@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.redkale.maven.plugins</groupId>
+    <artifactId>redkale-maven-plugin</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+    <name>RedkaleMavenPlugin</name>
+    <description>The Redkale Maven Plugin provides goals to manipulate JAR projects within the Redkale container.</description>
+    <properties>
+        <redkaleVersion>2.5.0-SNAPSHOT</redkaleVersion>
+        <mavenVersion>3.8.1</mavenVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+    
+    <dependencies>                
+        <dependency>
+            <groupId>org.redkale</groupId>
+            <artifactId>redkale</artifactId>
+            <version>${redkaleVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${mavenVersion}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-jdk14</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-nop</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>${mavenVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-artifact</artifactId>
+            <version>${mavenVersion}</version>
+        </dependency>   
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${mavenVersion}</version>
+        </dependency>        
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-tools-api</artifactId>
+            <version>3.6.1</version>
+        </dependency>
+    </dependencies>
+	
+    <licenses>     
+        <license>      
+            <name>Apache 2</name>       
+            <url>https://www.apache.org/licenses/</url>     
+            <distribution>repo</distribution>    
+            <comments>Apache License</comments>     
+        </license>     
+    </licenses>
+    
+    <developers>     
+        <developer>      
+            <id>redkale-maven-plugin</id>     
+            <name>redkale-maven-plugin</name>       
+            <email>redkale@qq.com</email>  
+            <url>https://redkale.org</url>    
+            <roles>     
+                <role>Project Manager</role>     
+                <role>Architect</role>     
+            </roles>    
+            <organization>redkale</organization>     
+            <organizationUrl>https://redkale.org</organizationUrl>       
+            <properties>     
+                <dept>No</dept>     
+            </properties>     
+            <timezone>8</timezone>     
+        </developer>     
+    </developers>  
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <scm>
+        <url>https://github.com/redkale/redkale-maven-plugin</url>
+        <connection>scm:git:git@github.com/redkale/redkale-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:redkale/redkale-maven-plugin.git</developerConnection>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-component-metadata</artifactId>
+                <version>2.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

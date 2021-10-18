@@ -26,7 +26,7 @@ import org.redkale.util.*;
  * @author zhangjx
  */
 @Mojo(name = "compile", defaultPhase = LifecyclePhase.PROCESS_CLASSES, requiresDependencyResolution = ResolutionScope.COMPILE, threadSafe = true)
-public class RedkaleCompilerMojo extends AbstractMojo {
+public class RedkaleCompileMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "${project.build.outputDirectory}", readonly = true, required = true)
     private File outputDirectory;
@@ -39,10 +39,7 @@ public class RedkaleCompilerMojo extends AbstractMojo {
 
     @Parameter
     protected List<String> nativeimageArgs;
-
-    @Parameter
-    protected List<String> reflectClassesArgs;
-
+    
     @Parameter
     protected Boolean skipCopyConf;  //是否跳过复制conf到jar中去
 
@@ -70,14 +67,11 @@ public class RedkaleCompilerMojo extends AbstractMojo {
             RedkaleClassLoader.putReflectionPublicConstructors(LoggingFileHandler.LoggingFormater.class, LoggingFileHandler.LoggingFormater.class.getName());
             RedkaleClassLoader.putReflectionPublicConstructors(LoggingFileHandler.LoggingSncpFileHandler.class, LoggingFileHandler.LoggingSncpFileHandler.class.getName());
 
-            if (reflectClassesArgs != null && !reflectClassesArgs.isEmpty()) {
-                reflectClassesArgs.forEach(v -> RedkaleClassLoader.putReflectionClass(v));
-            }
             //启动结束后
             final File nativeImageDir = new File(outputDirectory, "META-INF" + File.separatorChar + "native-image"
                 + File.separatorChar + projectArtifact.getGroupId() + File.separatorChar + projectArtifact.getArtifactId());
             nativeImageDir.mkdirs();
-            if (skipCopyConf == null || !skipCopyConf) {
+            if(skipCopyConf ==null || !skipCopyConf){
                 //复制conf目录
                 File confFile = new File(project.getBasedir(), "conf");
                 if (confFile.isDirectory()) {

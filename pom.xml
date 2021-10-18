@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.redkale.maven.plugins</groupId>
     <artifactId>redkale-maven-plugin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>maven-plugin</packaging>
     <name>RedkaleMavenPlugin</name>
-    <description>The Redkale Maven Plugin provides goals to manipulate JAR projects within the Redkale container.</description>
+    <description>The Redkale Maven Plugin</description>
     <properties>
-        <redkaleVersion>2.5.0-SNAPSHOT</redkaleVersion>
+        <redkaleVersion>2.5.0</redkaleVersion>
         <mavenVersion>3.8.1</mavenVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>

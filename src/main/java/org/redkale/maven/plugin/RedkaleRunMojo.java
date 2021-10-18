@@ -31,10 +31,13 @@ public class RedkaleRunMojo extends AbstractMojo {
     @Parameter(defaultValue = "${project}", readonly = true)
     protected MavenProject project;
 
+    @Parameter
+    protected String[] runArgs;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            org.redkale.boot.Application.main(null);
+            org.redkale.boot.Application.main(runArgs);
         } catch (Throwable t) {
             throw new MojoExecutionException("redkale run error", t);
         }

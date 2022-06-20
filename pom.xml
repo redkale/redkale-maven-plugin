@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.redkale.maven.plugins</groupId>
     <artifactId>redkale-maven-plugin</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>RedkaleMavenPlugin</name>
     <description>The Redkale Maven Plugin</description>
     <properties>
-        <redkaleVersion>2.5.0</redkaleVersion>
-        <mavenVersion>3.8.1</mavenVersion>
+        <redkale.version>2.7.0-SNAPSHOT</redkale.version>
+        <maven.version>3.8.1</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -19,12 +19,12 @@
         <dependency>
             <groupId>org.redkale</groupId>
             <artifactId>redkale</artifactId>
-            <version>${redkaleVersion}</version>
+            <version>${redkale.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${maven.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -39,17 +39,17 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${maven.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${maven.version}</version>
         </dependency>   
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>${mavenVersion}</version>
+            <version>${maven.version}</version>
         </dependency>        
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>

@@ -39,7 +39,7 @@ public class RedkaleCompileMojo extends AbstractMojo {
 
     @Parameter
     protected List<String> nativeimageArgs;
-    
+
     @Parameter
     protected Boolean skipCopyConf;  //是否跳过复制conf到jar中去
 
@@ -61,17 +61,12 @@ public class RedkaleCompileMojo extends AbstractMojo {
 
             new PrepareCompiler().run();
             Logger.getLogger("com.google.inject.internal").setLevel(Level.INFO);
-            RedkaleClassLoader.putReflectionClass(java.lang.Class.class.getName());
-            RedkaleClassLoader.putReflectionPublicConstructors(SimpleFormatter.class, SimpleFormatter.class.getName());
-            RedkaleClassLoader.putReflectionPublicConstructors(LoggingFileHandler.class, LoggingFileHandler.class.getName());
-            RedkaleClassLoader.putReflectionPublicConstructors(LoggingFileHandler.LoggingFormater.class, LoggingFileHandler.LoggingFormater.class.getName());
-            RedkaleClassLoader.putReflectionPublicConstructors(LoggingFileHandler.LoggingSncpFileHandler.class, LoggingFileHandler.LoggingSncpFileHandler.class.getName());
 
             //启动结束后
             final File nativeImageDir = new File(outputDirectory, "META-INF" + File.separatorChar + "native-image"
                 + File.separatorChar + projectArtifact.getGroupId() + File.separatorChar + projectArtifact.getArtifactId());
             nativeImageDir.mkdirs();
-            if(skipCopyConf ==null || !skipCopyConf){
+            if (skipCopyConf == null || !skipCopyConf) {
                 //复制conf目录
                 File confFile = new File(project.getBasedir(), "conf");
                 if (confFile.isDirectory()) {
@@ -212,6 +207,12 @@ public class RedkaleCompileMojo extends AbstractMojo {
                 if (nativeimageArgs != null) args.addAll(nativeimageArgs);
                 args.add("--enable-http");
                 args.add("--enable-https");
+                Set<String> sysPropertyNames = Set.of("jdk.", "path.", "java.", "file.", "os.", "line.", "sun.", "user.", "awt.", "graalvm.", "org.graalvm.");
+                System.getProperties().forEach((x, y) -> {
+                    if (Utility.find(sysPropertyNames, s -> x.toString().startsWith(s)) == null) { //不是系统环境变量
+                        args.add("-D" + x + "=" + y);
+                    }
+                });
                 args.add("--initialize-at-build-time=" + sb);
                 props.put("Args", String.join(" ", args));
                 try (FileOutputStream out = new FileOutputStream(propertiesFile)) {

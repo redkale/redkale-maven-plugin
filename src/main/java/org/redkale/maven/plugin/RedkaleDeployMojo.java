@@ -6,8 +6,7 @@
 package org.redkale.maven.plugin;
 
 import org.apache.maven.plugin.*;
-import org.apache.maven.plugins.annotations.Execute;
-import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
 /**
@@ -20,6 +19,6 @@ public class RedkaleDeployMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        
+
     }
 }

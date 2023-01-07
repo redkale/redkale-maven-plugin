@@ -6,17 +6,17 @@
 package org.redkale.maven.plugin;
 
 import java.io.*;
-import java.net.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 import java.util.logging.*;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.*;
-import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.project.MavenProject;
-import org.redkale.boot.*;
+import org.redkale.boot.PrepareCompiler;
 import org.redkale.convert.json.JsonConvert;
 import org.redkale.util.*;
 
@@ -188,7 +188,9 @@ public class RedkaleCompileMojo extends AbstractMojo {
                     }
                 });
                 Map<String, Object> resmap = new TreeMap<>();
-                if (!bundleList.isEmpty()) resmap.put("bundles", bundleList);
+                if (!bundleList.isEmpty()) {
+                    resmap.put("bundles", bundleList);
+                }
                 resmap.put("resources", resourceList);
                 try (FileOutputStream out = new FileOutputStream(resourceFile)) {
                     out.write(JsonConvert.root().convertToBytes(resmap));
@@ -204,7 +206,9 @@ public class RedkaleCompileMojo extends AbstractMojo {
                 RedkaleClassLoader.forEachBuildPackage(v -> sb.append(",").append(v));
                 final Properties props = new Properties();
                 final Set<String> args = new LinkedHashSet<>();
-                if (nativeimageArgs != null) args.addAll(nativeimageArgs);
+                if (nativeimageArgs != null) {
+                    args.addAll(nativeimageArgs);
+                }
                 args.add("--enable-http");
                 args.add("--enable-https");
                 Set<String> sysPropertyNames = Set.of("jdk.", "path.", "java.", "file.", "os.", "line.", "sun.", "user.", "awt.", "graalvm.", "org.graalvm.");
@@ -229,15 +233,23 @@ public class RedkaleCompileMojo extends AbstractMojo {
     }
 
     private static int copyFile(File src, File dest) throws Exception {
-        if (!src.isFile() && !src.isDirectory()) return -1;
+        if (!src.isFile() && !src.isDirectory()) {
+            return -1;
+        }
         if (src.isFile()) {
             dest.getParentFile().mkdirs();
             Files.copy(src.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } else {
-            if (!dest.isDirectory()) dest.mkdirs();
+            if (!dest.isDirectory()) {
+                dest.mkdirs();
+            }
             String cachePath = RedkaleClassLoader.RESOURCE_CACHE_CONF_PATH;
-            if (cachePath.indexOf('/') == 0) cachePath = cachePath.substring(1);
-            if (!cachePath.endsWith("/")) cachePath += "/";
+            if (cachePath.indexOf('/') == 0) {
+                cachePath = cachePath.substring(1);
+            }
+            if (!cachePath.endsWith("/")) {
+                cachePath += "/";
+            }
             final int len = src.getPath().length() + 1;
             for (File f : src.listFiles()) {
                 String fname = f.getPath().substring(len);

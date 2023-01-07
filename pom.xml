@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.redkale.maven.plugins</groupId>
     <artifactId>redkale-maven-plugin</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>RedkaleMavenPlugin</name>
     <description>The Redkale Maven Plugin</description>
     <properties>
-        <redkale.version>2.7.0</redkale.version>
-        <maven.version>3.8.1</maven.version>
+        <redkale.version>2.8.0-SNAPSHOT</redkale.version>
+        <maven.version>3.8.6</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <maven-plugin.version>3.6.1</maven-plugin.version>
+        <maven-plugin.version>3.7.0</maven-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <plexus-component-metadata.version>2.0.0</plexus-component-metadata.version>
     </properties>
@@ -24,6 +24,7 @@
             <groupId>org.redkale</groupId>
             <artifactId>redkale</artifactId>
             <version>${redkale.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -138,6 +139,14 @@
                 <version>${maven-plugin.version}</version>
                 <configuration>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
         </plugins>

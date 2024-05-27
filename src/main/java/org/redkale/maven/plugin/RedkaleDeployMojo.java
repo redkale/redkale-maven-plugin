@@ -19,6 +19,6 @@ public class RedkaleDeployMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-
+        // do nothing
     }
 }

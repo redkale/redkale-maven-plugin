@@ -9,9 +9,9 @@ import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.Execute;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
-import org.apache.maven.plugins.annotations.ResolutionScope;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
 /**
@@ -42,5 +42,4 @@ public class RedkaleRunMojo extends AbstractMojo {
             throw new MojoExecutionException("redkale run error", t);
         }
     }
-
 }

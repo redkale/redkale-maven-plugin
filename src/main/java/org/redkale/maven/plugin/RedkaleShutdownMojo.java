@@ -6,8 +6,8 @@
 package org.redkale.maven.plugin;
 
 import org.apache.maven.plugin.*;
-import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.ResolutionScope;
 
 /**
  *
@@ -25,5 +25,4 @@ public class RedkaleShutdownMojo extends AbstractMojo {
             throw new MojoExecutionException("redkale shutdown error", t);
         }
     }
-
 }

@@ -15,7 +15,8 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <maven-plugin.version>3.7.0</maven-plugin.version>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <palantir-java-format.version>2.46.0</palantir-java-format.version>
         <plexus-component-metadata.version>2.0.0</plexus-component-metadata.version>
@@ -146,7 +147,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
@@ -157,7 +158,7 @@
                 <artifactId>spotless-maven-plugin</artifactId>
                 <version>${spotless-maven-plugin.version}</version>
                 <configuration>
-                    <lineEndings>WINDOWS</lineEndings>
+                    <lineEndings>UNIX</lineEndings>
                     <formats>
                         <format>
                             <includes>
